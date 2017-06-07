@@ -1,0 +1,165 @@
+$uplow: 100%;
+
+
+.prod-newo{
+    display: flex;
+    flex-direction: column;
+}
+.prod-uplo{
+    margin-left: -5px;
+    margin-bottom: -10px;
+}
+.prod-fiel{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: $uplow;
+}
+.prod-acto{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.prod-fiel-duob{
+    display: flex;
+}
+.mat-input-container{
+    flex: 1;
+}
+
+.btnsave{
+    margin-bottom: 10px;
+    background-color: silver;
+}
+
+// .uploader input {
+//   display: none;
+// }
+
+// .uploader {
+//   background-color: rgba(0, 0, 0, 0.02);
+//   background-color: rgba(0, 0, 0, 0.05);  
+//   cursor: pointer;
+//   display: flex;
+//   flex-direction: column;
+//   height: 100px;
+//   justify-content: center;
+//   align-items: center;
+//   border: 2px dashed #ccc;
+//   position: relative;
+//   width: $uplow;
+//   border-radius: 10px;
+//   text-align: center;
+//   flex-direction: column;
+// }
+// .uploader div{
+//   display: flex;
+//   flex-direction: column;
+// }
+// .uploader .icon{
+//   font-size: 60px;
+// }
+// .uploader .spinner{
+//   height: 60px;
+// }
+
+.card-tool{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 20px;
+    color: white;
+    padding: 10px;
+}
+.uplo-phot{
+    cursor: pointer;
+    input{
+        opacity: 0;
+        position: absolute;
+        width: 59px;
+        left: 0px;
+        top: 0px;
+        height: 60px;
+        z-index: 999;
+    }
+}
+
+
+.imag-cont{
+    margin-top: 20px;
+    // display: flex;
+    // align-items: center;
+    // flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    .mat-spinner{
+        margin: auto;
+        height: 70px;
+    }
+}
+.imag-prod{
+  padding: 5px;
+  flex: 1;
+  .imag-head{
+    background-color: rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding-left: 15px;
+    padding-right: 10px;
+    border: 1px solid silver;
+    margin-right: -2px;
+  }  
+  .imag-cove span{
+    bottom: 3px;
+    position: relative;
+  }
+  img{
+    width: 100%;
+    border-left: 1px solid silver;
+    border-right: 1px solid silver;
+    border-bottom: 1px solid silver;
+  }
+}
+
+
+
+
+
+
+
+
+@media (max-width: 800px) {
+
+    .prod-newo{
+        flex-direction: column;
+    }
+    .prod-uplo{
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+}
+
+
+.checkbox1{
+    .mat-input-container{
+        max-width: 100%;
+    }
+}
+.checkbox2{
+    .mat-input-container{
+        max-width: 100px;
+    }
+}
+
+.butt-what{
+    margin-right: 10px;
+    // .mat-button-toggle-group{
+    //     flex-direction: column;
+    // }
+}
+

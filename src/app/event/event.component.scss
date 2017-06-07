@@ -1,0 +1,113 @@
+.even-cove{
+    background-color: black;
+}
+.event-setting{
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    transition: all .5s;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+    z-index: 10;
+    &:hover{
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+}
+
+.even-cont{
+    margin-top: 20px;
+    margin-bottom: 100px;
+    padding-left: 20px;
+    padding-right: 20px;
+    // font-family: 'Architects Daughter', cursive;
+    font-family: 'Josefin Sans', sans-serif;
+    .even-desk{
+        font-size: 20px;
+        margin-top: 40px;
+    }
+    .btn-set{
+        position: absolute;
+        right: 20px;
+        top: 15px;
+        transition: all .5s;
+        background-color: rgba(0, 0, 0, 0.3);
+        color: white;
+        z-index: 2;
+        &:hover{
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+    }
+    .even-list{
+        display: flex;
+        flex-wrap: wrap;
+        .mat-card{
+            min-width: 300px;
+            flex: 1;
+            // font-family: 'Architects Daughter', cursive;
+            font-family: 'Josefin Sans', sans-serif;
+            margin-left: 5px;
+            margin-right: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            &:hover{
+                .imag-card{
+                    filter: brightness(80%);
+                }
+            }
+            .imag-card{
+                transition: all .5s;
+                position: relative;
+                &:hover{
+                    .slide-left, .slide-right{
+                        opacity: 1;
+                    }
+                }
+                .slide-left, .slide-right{
+                    position: absolute;
+                    top: 50%;
+                    opacity: 0;
+                    background-color: rgba(0, 0, 0, 0.3);
+                    color: white;
+                    transition: opacity 1s;
+                }
+                .slide-left{
+                    left: 0;
+                }
+                .slide-right{
+                    right: 0px;
+                }
+            }
+            .item-tito{
+                font-size: 22px;
+            }
+            .item-desk{
+                font-size: 16px;
+            }
+            .infoproduct{
+                display: flex;
+                justify-content: space-between;
+                margin-top: 0px;
+                .priceinfo{
+                    text-align: center;
+                    margin-top: -55px;
+                    height: 100px;
+                    width: 120px;
+                    background-color: white;
+                    border-radius: 10px;
+                    position: absolute;
+                    right: 10px;
+                    padding-top: 10px;
+                    .price{
+                        font-size: 30px;
+                    }
+                }
+            }
+            .mat-card-actions{
+                button{
+                    float: right;
+                }
+            }
+
+        }
+    }
+}

@@ -1,0 +1,80 @@
+<md-dialog-content>
+  <div class="prod-newo">
+    <form class="prod-fiel" [formGroup]="event">
+      <div class="card-tool">
+        <button md-icon-button class="uplo-phot" color="accent">
+          <md-icon>add_a_photo</md-icon>
+          <input type="file" name="file" accept="image/*|pdf" multiple (change)="goPhoto($event)">
+        </button>
+        <md-slide-toggle formControlName="active"> Online</md-slide-toggle>
+        <button md-icon-button color="accent" (click)="okDelete()"><md-icon>delete</md-icon></button>      
+      </div>
+      <div class="flex">
+        <md-input-container class="flex1">
+          <input mdInput placeholder="Url" formControlName="url">
+        </md-input-container>
+        <md-input-container class="flex2">
+          <input mdInput placeholder="Title" formControlName="title">
+        </md-input-container>
+      </div>
+      <md-input-container class="flex2">
+        <textarea mdInput rows="10" placeholder="Description" formControlName="description"></textarea>
+      </md-input-container>
+      <div class="flex">
+        <div class="butt-what">
+          <md-button-toggle-group #what="mdButtonToggleGroup" vertical>
+            <!--<md-button-toggle value="slide" mdTooltip="Slide" mdTooltipPosition="above">
+                <md-icon>slideshow</md-icon>
+            </md-button-toggle>-->
+            <md-button-toggle value="grid" mdTooltip="Grid" mdTooltipPosition="below" checked="true">
+                <md-icon>grid_on</md-icon>
+            </md-button-toggle>
+          </md-button-toggle-group>
+        </div>
+        <div class="flex1">
+          <!--<div>
+            <md-button-toggle-group #slide="mdButtonToggleGroup" formControlName="slide">
+              <md-button-toggle value="1" mdTooltip="index" mdTooltipPosition="above">1</md-button-toggle>
+              <md-button-toggle value="2" mdTooltip="index" mdTooltipPosition="above">2</md-button-toggle>
+              <md-button-toggle value="3" mdTooltip="index" mdTooltipPosition="above">3</md-button-toggle>
+              <md-button-toggle value="4" mdTooltip="index" mdTooltipPosition="above">4</md-button-toggle>
+              <md-button-toggle value="5" mdTooltip="index" mdTooltipPosition="above">5</md-button-toggle>
+              <md-button-toggle value="6" mdTooltip="index" mdTooltipPosition="above">6</md-button-toggle>
+              <md-button-toggle value="7" mdTooltip="index" mdTooltipPosition="above">7</md-button-toggle>
+              <md-button-toggle value="8" mdTooltip="index" mdTooltipPosition="above">8</md-button-toggle>
+            </md-button-toggle-group>
+          </div>-->
+          <div class="flex">
+            <div class="flex1">
+              <md-button-toggle-group #grid="mdButtonToggleGroup" formControlName="gridr">
+                <md-button-toggle value="1" mdTooltip="row" mdTooltipPosition="below">1</md-button-toggle>
+                <md-button-toggle value="2" mdTooltip="row" mdTooltipPosition="below">2</md-button-toggle>
+                <md-button-toggle value="3" mdTooltip="row" mdTooltipPosition="below">3</md-button-toggle>
+                <md-button-toggle value="4" mdTooltip="row" mdTooltipPosition="below">4</md-button-toggle>
+              </md-button-toggle-group>      
+            </div>
+            <div class="flex1">
+              <md-button-toggle-group #grid="mdButtonToggleGroup" formControlName="gridc">
+                <md-button-toggle value="1" mdTooltip="col" mdTooltipPosition="below">1</md-button-toggle>
+                <md-button-toggle value="2" mdTooltip="col" mdTooltipPosition="below">2</md-button-toggle>
+                <md-button-toggle value="3" mdTooltip="col" mdTooltipPosition="below">3</md-button-toggle>
+                <md-button-toggle value="4" mdTooltip="col" mdTooltipPosition="below">4</md-button-toggle>
+              </md-button-toggle-group>      
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </form>
+    <div class="prod-uplo">
+      <div class="imag-cont">
+        <div *ngIf="loading">
+          <md-spinner class="spinner"></md-spinner>
+        </div>
+        <div class="imag-prod" *ngIf="cover">
+          <img src="{{baseurl}}event%2F{{cover}}?alt=media" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</md-dialog-content>

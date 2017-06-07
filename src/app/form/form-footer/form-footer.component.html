@@ -1,0 +1,28 @@
+<md-dialog-content>
+  <form [formGroup]="myinfo">
+    <md-input-container>
+      <input mdInput placeholder="Phone" (focusout)="upWork()" formControlName="phone">
+    </md-input-container>
+    <md-input-container>
+      <input mdInput placeholder="Email" (focusout)="upWork()" formControlName="email">
+    </md-input-container>
+    <md-input-container>
+      <input mdInput placeholder="Address" (focusout)="upWork()" formControlName="address">
+    </md-input-container>
+    <md-input-container>
+      <input mdInput placeholder="Map" (focusout)="upWork()" formControlName="map">
+    </md-input-container>
+    <md-input-container>
+      <input mdInput placeholder="Facebook" (focusout)="upWork()" formControlName="facebook">
+    </md-input-container>
+    <md-input-container>
+      <input mdInput placeholder="Twitter" (focusout)="upWork()" formControlName="twitter">
+    </md-input-container>
+    <md-input-container>
+      <input mdInput placeholder="Instagram" (focusout)="upWork()" formControlName="instagram">
+    </md-input-container>
+    <md-input-container class="flex2">
+      <textarea mdInput rows="10" placeholder="Social" (focusout)="upWork()" formControlName="social"></textarea>
+    </md-input-container>
+  </form>
+</md-dialog-content>

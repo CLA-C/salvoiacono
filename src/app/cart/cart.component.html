@@ -1,0 +1,42 @@
+<div class="cover">
+  <md-grid-list class="" cols="1" rowHeight="160px">
+    <md-grid-tile>
+    </md-grid-tile>
+  </md-grid-list>
+</div>
+
+<div class="cart-cont">
+  <div class="cart-item" *ngFor="let product of cartlist">
+    <img routerLink="/{{product.event}}/{{product.url}}" src="{{baseurl}}work%2F{{product.cover}}?alt=media" alt="">
+    <div class="item-info">
+      <div class="flex">
+        <div routerLink="/{{product.event}}/{{product.url}}" class="info-tito">{{product.title}}</div>
+        <button md-icon-button mdTooltip="Remove" mdTooltipPosition="right" (click)="removeCart(product)">
+          <md-icon>delete</md-icon>
+        </button>
+      </div>
+      <div class="info-butt">
+        <md-button-toggle-group #group="mdButtonToggleGroup">
+          <md-button-toggle value="1" checked="true">
+            <md-icon>looks_one</md-icon>
+          </md-button-toggle>
+          <md-button-toggle value="2">
+            <md-icon>looks_two</md-icon>
+          </md-button-toggle>
+          <md-button-toggle value="3">
+            <md-icon>looks_3</md-icon>
+          </md-button-toggle>
+          <md-button-toggle value="4">
+            <md-icon>looks_4</md-icon>
+          </md-button-toggle>
+        </md-button-toggle-group>
+        <div class="info-pric">&#8364; {{product.price}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="item-paym">
+    <button md-button>STRIPE</button>
+  </div>
+
+</div>

@@ -1,1 +1,96 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/theming';
+@include mat-core();
+$candy-app-primary: mat-palette($mat-indigo);
+$candy-app-accent:  mat-palette($mat-blue);
+$candy-app-warn:    mat-palette($mat-red);
+$candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-app-warn);
+@include angular-material-theme($candy-app-theme);
+
+// @import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+@import url('https://fonts.googleapis.com/css?family=Architects+Daughter');
+@import url('https://fonts.googleapis.com/css?family=Fugaz+One');
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+
+body{
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    // background-color: black;
+}
+
+* {
+    outline: none;
+}
+.hide{
+    display: none;
+}
+.container{
+    max-width: 1400px;
+    margin: auto;
+}
+
+.flex{
+    display: flex;
+    text-align: center;
+    .flex1{
+        flex: 1 !important;
+    }
+    .flex2{
+        flex: 2 !important;
+    }
+    .flex3{
+        flex: 3 !important;
+    }
+}
+
+.loguser{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: white;
+    z-index: 999;
+}
+
+@media (max-width: 800px) {
+    .menu-side{
+        display: inherit !important;
+    }
+    .menu-cont{
+        display: none;
+    }
+    .prod-cont md-card{
+        max-width: none;
+    }
+}
+
+.home-slide{
+    .mat-tab-header{
+        display: none;
+    }
+}
+
+.mat-sidenav{
+    width: auto !important;
+}
+.mat-sidenav-content{
+    // background-color: black;
+}
+
+snack-bar-container{
+    min-width: 0px !important;
+    margin-bottom: 20px;
+}
+
+.mat-sidenav-container{
+    height: 100vh;
+}
+.mat-sidenav{
+    width: 70vw;
+}
+.side-cont{
+    // background-color: #f1f1f1;
+    // background-color: black;
+}
+

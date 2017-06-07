@@ -1,4 +1,38 @@
-<h1>
-  {{title}}
-</h1>
-<router-outlet></router-outlet>
+
+
+    <div class="side-cont">
+
+      <div class="loguser">
+        <button md-button routerLink="/cart">
+          <span>{{cart.length}}</span>
+          <md-icon>shopping_cart</md-icon>
+        </button>
+        <button md-icon-button (click)="goLogin()" *ngIf="!imlogin">
+          <md-icon>account_circle</md-icon>
+        </button>
+        <button md-icon-button [mdMenuTriggerFor]="menu" *ngIf="imlogin">
+          <md-icon>account_circle</md-icon>
+        </button>
+        <md-menu #menu="mdMenu">
+          <button md-menu-item (click)="goLogout()">
+            <md-icon>person</md-icon>
+            <span>Logout</span>
+          </button>
+          <button md-menu-item (click)="goEven()">
+            <md-icon>bookmark</md-icon>
+            <span>Event</span>
+          </button>
+          <button md-menu-item (click)="goProd()">
+            <md-icon>work</md-icon>
+            <span>Work</span>
+          </button>
+        </md-menu>
+      </div>
+      <!--<div class="main-menu">
+        <button md-icon-button class="menu-side" (click)="sidenav.toggle()"><i class="material-icons">menu</i></button>
+        <span routerLink="/" class="logo">SALVO <img src="assets/logo_white.png" alt=""> IACONO</span>        
+      </div>-->
+      <app-menu></app-menu>
+      <router-outlet></router-outlet>
+      <app-footer></app-footer>
+    </div>

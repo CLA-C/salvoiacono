@@ -1,0 +1,54 @@
+.cover{
+    background-color: black;
+}
+
+.cart-cont{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+    margin-bottom: 80px;
+    .cart-item{
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid silver;
+        padding-left: 40px;
+        padding-right: 40px;
+        img{
+            width: 200px;
+            margin-right: 20px;
+        }
+        .item-info{
+            .info-tito{
+                margin-bottom: 10px;
+                font-size: 20px;
+            }
+            .info-pric{
+                margin-left: 20px;
+                // margin-top: 20px;
+                font-size: 20px;
+                // font-weight: bold;
+                // float: right;
+            }
+            .info-butt{
+                display: flex;
+                align-items: center;
+            }
+            .mat-icon-button{
+                margin-left: 20px;
+            }
+        }
+    }
+    .item-paym{
+        display: flex;
+        flex-basis: 100%;
+        button{
+            flex: 1;
+            height: 50px;
+            background-color: black;
+            color: white;
+        }
+    }
+}

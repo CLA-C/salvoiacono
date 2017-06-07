@@ -1,0 +1,109 @@
+.home-slide{
+    position: relative;
+    .slid-left, .slid-righ{
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        z-index: 2;
+    }
+    .slid-left{
+        left: 100px;
+        top: 50%;
+    }
+    .slid-righ{
+        right: 100px;
+        top: 50%;
+    }
+    .mat-grid-list{
+        // filter: brightness(0.9);
+        cursor: pointer;
+        &:hover{
+            .slide-tito{
+                opacity: 1;
+            }
+            .item-back{
+                transform: scale(1.2);
+                filter: brightness(0.8);
+            }
+        }
+
+        .item-back{
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+            transition: all .8s;
+        }
+        
+    }
+    .slide-tito{
+        font-family: 'Josefin Sans', sans-serif;
+        transition: all .5s;
+        margin-top: 120px;
+        color: white;
+        text-shadow: 0px 0px 5px black;
+        font-size: 23px;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all .5s;
+        padding-top: 20px;
+        min-width: 523px;
+        text-align: center;
+        font-size: 30px;
+        opacity: 0;
+        z-index: 2;
+    }
+}
+.home-grid{
+    margin-top: 1px;
+    margin-bottom: 1px;
+    font-family: 'Josefin Sans', sans-serif;
+    .grid-item{
+        // transition: all .5s;
+        cursor: pointer;
+        background-size: 100%;
+        &:hover{
+            // background-size: 200% !important;
+            .item-back{
+                transform: scale(1.2);
+                filter: brightness(0.8);
+            }
+            .grid-tito{
+                opacity: 1;
+            }
+        }
+        .item-back{
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+            transition: all .8s;
+        }
+        .grid-tito{
+            color: white;
+            text-shadow: 0px 0px 5px black;
+            font-size: 23px;
+            text-transform: uppercase;
+            opacity: 0;
+            transition: all .5s;
+            z-index: 1;
+        }
+    }
+}
+
+.btn-set{
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
+
+// .mat-grid-tile{
+//     background-color: black;
+// }

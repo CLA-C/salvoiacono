@@ -1,0 +1,56 @@
+<!--<div class="home-slide" *ngIf="!onmobile;">
+  <button md-icon-button  class="slid-left" (click)="goSLide(-1)">
+    <md-icon>chevron_left</md-icon>
+  </button>
+  <button md-icon-button class="slid-righ" (click)="goSLide(1)">
+    <md-icon >chevron_right</md-icon>
+  </button>
+  <md-tab-group selectedIndex="{{homeslide}}"> 
+    <md-tab disabled *ngFor="let item of slidelist | async" disabled="true">
+      <md-grid-list cols="1" rowHeight="400">
+        <md-grid-tile class="slide-item">
+            <div class="item-back" 
+            [routerLink]="[item.url]" 
+            [ngStyle]="{'background': 'url(' + baseurl + 'event%2F' + item.cover + '?alt=media) center / cover'}"></div>
+            <button *ngIf="imlogin" md-icon-button class="btn-set" (click)="prodSett(item.$key)"><md-icon>settings_ethernet</md-icon></button>
+            <span class="slide-tito" [routerLink]="[item.url]">{{item.title}}</span>
+        </md-grid-tile>
+      </md-grid-list>
+    </md-tab>
+  </md-tab-group>
+</div>-->
+
+<div class="home-grid" *ngIf="!onmobile; else elseMobile">
+  <md-grid-list cols="4" rowHeight="1:1">
+    <md-grid-tile
+      *ngFor="let item of gridlist | async" 
+      class="grid-item"
+      [colspan]="item.gridc"
+      [rowspan]="item.gridr">
+      <div class="item-back" 
+      [routerLink]="[item.url]" 
+      [ngStyle]="{'background': 'url(' + baseurl + 'event%2F' + item.cover + '?alt=media) center / cover'}"></div>
+      <span class="grid-tito" [routerLink]="[item.url]">{{item.title}}</span>
+      <button *ngIf="imlogin" md-icon-button class="btn-set" (click)="prodSett(item.$key)"><md-icon>settings_ethernet</md-icon></button>
+    </md-grid-tile>
+  </md-grid-list>
+</div>
+
+<ng-template #elseMobile>
+  <div class="home-grid">
+    <md-grid-list cols="2">
+      <md-grid-tile
+        *ngFor="let item of gridlist | async" 
+        class="grid-item"
+        [colspan]="2"
+        [rowspan]="1"
+        [ngStyle]="{'background': 'url(' + baseurl + 'event%2F' + item.cover + '?alt=media) center / cover'}">
+        <span class="grid-tito" [routerLink]="[item.url]">{{item.title}}</span>
+        <button *ngIf="imlogin" md-icon-button class="btn-set" (click)="prodSett(item.$key)"><md-icon>settings_ethernet</md-icon></button>
+      </md-grid-tile>
+    </md-grid-list>
+  </div>
+</ng-template>
+
+
+

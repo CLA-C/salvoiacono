@@ -1,0 +1,5 @@
+<div class="main-menu" [@loading]='state' [class.fixed]="state=='start'">
+  <!--<button md-icon-button class="menu-side" (click)="sidenav.toggle()"><i class="material-icons">menu</i></button>-->
+  <span routerLink="/" class="logo" (click)="goFinish()">SALVO <img src="assets/logo_white.png" alt=""> IACONO</span>
+  <button md-button class="notready" *ngIf="state=='start'">IN CONSTRUCTION</button>
+</div>
