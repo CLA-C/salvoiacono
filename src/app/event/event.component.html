@@ -1,51 +1,33 @@
 <div class="even-desk" *ngFor="let event of events | async; let i = index">
-<div *ngIf="i==0">
-<!--<div class="even-cove">
-  <md-grid-list class="" cols="1" rowHeight="160px">
-    <md-grid-tile class="grid-item">
-    </md-grid-tile>
-  </md-grid-list>
-</div>-->
-<button *ngIf="imlogin" md-icon-button class="event-setting" (click)="eventSett(event.$key)"><md-icon>settings_ethernet</md-icon></button>
-<div class="even-cont container">
-  <div class="even-desk">
-    <h1>{{event.title}}</h1>
-    <div [innerHTML]="event.description"></div>
-    <br><br>
-  </div>
-  <div class="even-list">
-    <md-card *ngFor="let item of works | async ">
-      <button *ngIf="imlogin" md-icon-button class="btn-set" (click)="workSett(item.$key)"><md-icon>settings_ethernet</md-icon></button>
-      <div class="imag-card">
-        <!--<button md-icon-button  class="slide-left" (click)="goSLide(-1)">
-          <md-icon>chevron_left</md-icon>
-        </button>
-        <button md-icon-button class="slide-right" (click)="goSLide(1)">
-          <md-icon >chevron_right</md-icon>
-        </button>-->
-        <img md-card-image *ngIf="!item.cover" src="assets/placeholder.gif">
-        <img md-card-image *ngIf="item.cover" src="{{baseurl}}work%2F{{item.cover}}?alt=media" routerLink="{{item.url}}">
+  <div *ngIf="i==0">
+    <button *ngIf="imlogin" md-icon-button class="event-setting" (click)="eventSett(event.$key)"><md-icon>settings_ethernet</md-icon></button>
+    <div class="even-cont container">
+      <div class="even-desk">
+        <h1>{{event.title}}</h1>
+        <div class="item-desk" [innerHTML]="event.description | safe: 'html'"></div>
+        <br><br>
       </div>
-      <md-card-content>
-        <div class="infoproduct">
-          <div class="item-tito" routerLink="{{item.url}}">{{item.title || "Work Name"}}</div>
-          <div class="priceinfo">
-            <div class="price">&#8364; {{item.price}}</div>
-            <div class="discount">{{item.discount}}% Discount</div>
+      <masonry [useImagesLoaded]="true">
+        <masonry-brick class="brick" *ngFor="let item of works | async ">
+          <div class="cont">
+            <button *ngIf="imlogin" md-icon-button class="btn-set" (click)="workSett(item.$key)"><md-icon>settings_ethernet</md-icon></button>
+            <div class="">
+              <img md-card-image *ngIf="!item.cover" src="assets/placeholder.gif">
+              <img md-card-image *ngIf="item.cover" src="{{baseurl}}work%2F{{item.cover}}?alt=media" routerLink="{{item.url}}">
+            </div>
+            <div>
+              <div class="infoproduct">
+                <div class="priceinfo" *ngIf="item.price">
+                  <div class="price">&#8364; {{item.price}}</div>
+                  <div class="discount">{{item.discount}}% Discount</div>
+                </div>
+              </div>
+              <div class="item-tito" routerLink="{{item.url}}" *ngIf="item.title">{{item.title}}</div>
+              <div class="item-desk" [innerHTML]="item.description" *ngIf="item.description"></div>
+            </div>
           </div>
-        </div>
-        <div class="item-desk" [innerHTML]="item.description"></div>
-        <!--<div class="infoprice">
-          <div class="price">&#8364; {{item.price}}</div>
-          <div class="discount">{{item.discount}}% Discount</div>
-        </div>-->
-      </md-card-content>
-      <!--<md-card-actions>
-        <button md-button>BUY</button>
-        <button md-button>SHARE</button>
-      </md-card-actions>-->
-    </md-card>
+        </masonry-brick>
+      </masonry>
+    </div>
   </div>
-</div>
-</div>
 </div>

@@ -5,9 +5,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Pipe, PipeTransform } from '@angular/core';
 
 import { FormEventComponent } from '../form/form-event/form-event.component';
 import { FormWorkComponent } from '../form/form-work/form-work.component';
+import { AppPipe } from '../app.pipe';
 
 @Component({
   selector: 'app-work',
@@ -32,7 +34,7 @@ export class EventComponent implements OnInit {
     public dialog: MdDialog, 
     private router: Router,
     private route:ActivatedRoute,
-    private sanitized: DomSanitizer
+    private sanitizer: DomSanitizer
   ) {
 
     afAuth.authState.subscribe(log => {

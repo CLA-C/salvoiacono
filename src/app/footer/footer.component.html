@@ -1,49 +1,42 @@
 <footer class="footer">
-        <div class="container">
-          <button *ngIf="imlogin" md-icon-button class="btn-set" (click)="goFooter()"><md-icon>settings_ethernet</md-icon></button>
-          <div class="footer-top">
-            <div class="footer-block">
-              <h4>Contact</h4>
-              <div class="footer-cont">
-                <div class="contact"><md-icon>phone</md-icon><a href="tel:{{ (myinfo | async)?.phone }}">{{ (myinfo | async)?.phone }}</a></div>
-                <div class="contact"><md-icon>email</md-icon><a href="mailto:{{ (myinfo | async)?.email }}">{{ (myinfo | async)?.email }}</a></div>
-                <div class="contact"><md-icon>location_on</md-icon><a href="{{ (myinfo | async)?.map }}" target="_blank">{{ (myinfo | async)?.address }}</a></div>
-              </div>
-            </div>
-            <div class="footer-block">
-              <h4>Social</h4>
-              <div class="footer-cont social">
-
-                <form>
-                  <!--<input placeholder="Email" value="">-->
-                  <textarea placeholder="Message"></textarea>
-                  <button>INVIO</button>
-                </form>
-
-              </div>
-            </div>
-          </div>
+  <div class="container">
+    <button *ngIf="imlogin" md-icon-button class="btn-set" (click)="goFooter()"><md-icon>settings_ethernet</md-icon></button>
+    <div class="footer-top">
+      <div class="footer-block">
+        <h4>Contact</h4>
+        <div class="footer-cont">
+          <div class="contact"><md-icon>phone</md-icon><a href="tel:{{ (myinfo | async)?.phone }}">{{ (myinfo | async)?.phone }}</a></div>
+          <div class="contact"><md-icon>email</md-icon><a href="mailto:{{ (myinfo | async)?.email }}">{{ (myinfo | async)?.email }}</a></div>
+          <div class="contact"><md-icon>location_on</md-icon><a href="{{ (myinfo | async)?.map }}" target="_blank">{{ (myinfo | async)?.address }}</a></div>
         </div>
-        <div class="footer-bottom">
-          <div class="container">
-            <div class="privacy">
-
-              <a href="{{ (myinfo | async)?.facebook }}" target="_blank">
-                <i class="fa fa-facebook-square" aria-hidden="true"></i>
-              </a>
-              <a href="{{ (myinfo | async)?.twitter }}" target="_blank">
-                <i class="fa fa-twitter-square" aria-hidden="true"></i>
-              </a>
-              <a href="{{ (myinfo | async)?.instagram }}" target="_blank">
-                <i class="fa fa-instagram" aria-hidden="true"></i>
-              </a>
-              
-            </div>
-            <div class="social">
-              <div [innerHTML]="html"></div>
-              <!--<iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&width=95&layout=button_count&action=like&size=large&show_faces=false&share=false&height=21&appId" width="95" height="21" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>            
-              <iframe src="https://platform.twitter.com/widgets/tweet_button.html?size=l&url=https%3A%2F%2Fdev.twitter.com%2Fweb%2Ftweet-button&via=twitterdev&related=twitterapi%2Ctwitter&text=custom%20share%20text&hashtags=example%2Cdemo" width="140" height="28" title="Twitter Tweet Button" style="border: 0; overflow: hidden;"></iframe>-->
-            </div>
-          </div>
+      </div>
+      <div class="footer-block">
+        <h4>Social</h4>
+        <div class="footer-cont social">
+          <form [formGroup]="messForm" (ngSubmit)="goMess($event)">
+            <textarea placeholder="Message" formControlName="message"></textarea>
+            <button md-button type="submit" *ngIf="messForm.valid">INVIO</button>
+          </form>
         </div>
-      </footer>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="privacy">
+        <a href="{{ (myinfo | async)?.facebook }}" target="_blank">
+          <i class="fa fa-facebook-square" aria-hidden="true"></i>
+        </a>
+        <a href="{{ (myinfo | async)?.twitter }}" target="_blank">
+          <i class="fa fa-twitter-square" aria-hidden="true"></i>
+        </a>
+        <a href="{{ (myinfo | async)?.instagram }}" target="_blank">
+          <i class="fa fa-instagram" aria-hidden="true"></i>
+        </a>
+      </div>
+      <div class="social">
+        <div [innerHTML]="html"></div>
+      </div>
+    </div>
+  </div>
+</footer>

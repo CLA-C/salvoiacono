@@ -9,6 +9,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
+import { MasonryModule } from 'angular2-masonry';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +24,8 @@ import { FooterComponent } from './footer/footer.component';
 import { CartComponent } from './cart/cart.component';
 import { TestComponent } from './test/test.component';
 import { MenuComponent } from './menu/menu.component';
+import { MessageComponent } from './message/message.component';
+import { AppPipe } from './app.pipe';
 
 enableProdMode();
 
@@ -39,7 +42,9 @@ enableProdMode();
     FooterComponent,
     CartComponent,
     TestComponent,
-    MenuComponent
+    MenuComponent,
+    MessageComponent,
+    AppPipe
   ],
   entryComponents: [
     AppComponent,
@@ -59,6 +64,7 @@ enableProdMode();
     AppRoutingModule,
     MaterialModule,
     BrowserAnimationsModule,
+    MasonryModule
   ],
   bootstrap: [ AppComponent ]
 })

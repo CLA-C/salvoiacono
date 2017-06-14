@@ -1,0 +1,5 @@
+<div class="contmess" *ngIf="login">
+  <md-card class="message" *ngFor="let message of messages | async">
+    <b>{{message.datetime | date}}</b> : {{message.message}}
+  </md-card>
+</div>

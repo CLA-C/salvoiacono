@@ -47,8 +47,8 @@ body{
 
 .loguser{
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 10px;
+    right: 10px;
     color: white;
     z-index: 999;
 }
@@ -62,6 +62,16 @@ body{
     }
     .prod-cont md-card{
         max-width: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .loguser{
+        top: 0px;
+        right: 0;
+        .cart{
+            display: none;
+        }
     }
 }
 

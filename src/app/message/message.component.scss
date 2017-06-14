@@ -1,0 +1,9 @@
+.contmess{
+    min-height: 400px;
+    margin-top: 200px;
+    display: flex;
+    flex-direction: column;
+    .mat-card{
+        margin-bottom: 20px;
+    }
+}

@@ -30,6 +30,11 @@
         font-size: 45px;
         text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
         margin-top: -45px;
+        @media (max-width: 600px) {
+            span{
+                display: none;
+            }
+        }
         img{
             height: 82px;
             position: relative;
