@@ -23,29 +23,23 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class MenuComponent implements OnInit {
 
-  state: string = 'start';
+  state: string = 'finish';
   ready: boolean = false;
   imlogin: boolean;
 
   constructor(
     afAuth: AngularFireAuth,
   ) {
-    afAuth.authState.subscribe(log => {
-      if(log) {
-        this.imlogin=true;
-      } else {
-        this.imlogin=false;
-      }
-    });
-   }
+
+    afAuth.authState.subscribe(log => {if(log) {this.imlogin=true;} else {this.imlogin=false;}});
+   
+  }
 
   ngOnInit() {
   }
 
   goFinish(){
-    if(this.imlogin){
       this.state = 'finish';
-    }
   }
 
 }

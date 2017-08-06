@@ -18,10 +18,13 @@ import { CartService } from './cart/cart.service';
 export class AppComponent implements OnInit {
 
   @ViewChild('sidenav') public sidenav: MdSidenav;
+  
   private imlogin: boolean;
   private cartnumber;
   private cart = [];
   private cartone = ['aaa'];
+  private message: FirebaseListObservable<any>;
+  private notread:number;
 
   constructor(
     public db: AngularFireDatabase,
@@ -38,6 +41,26 @@ export class AppComponent implements OnInit {
         this.imlogin=false;
       }
     });
+
+      
+    // this.db.list('/message', { 
+    //   query: {
+    //     orderByChild: 'read',
+    //     equalTo: 'false' 
+    //   }
+    // }).subscribe(snapshots => {
+    //     this.notread=snapshots.length;
+    // })
+
+      db.list('/message', {
+        query: {
+          orderByChild: 'read',
+          equalTo: false
+        }
+      }).subscribe(snapshots => {
+        this.notread=snapshots.length;
+      });
+
 
   }
 
@@ -58,7 +81,7 @@ export class AppComponent implements OnInit {
   }
   goProd() {
     let config: MdDialogConfig = {
-      disableClose: false,
+      disableClose: true,
       data: {
       }
     };
@@ -66,7 +89,7 @@ export class AppComponent implements OnInit {
   }
   goEven() {
     let config: MdDialogConfig = {
-      disableClose: false,
+      disableClose: true,
       data: {
       }
     };

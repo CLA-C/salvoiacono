@@ -13,7 +13,7 @@
     <md-menu #menu="mdMenu">
       <button md-menu-item routerLink="message">
         <md-icon>mail</md-icon>
-        <span>Message</span>
+        <span>{{notread}} Message</span>
       </button>
       <button md-menu-item (click)="goEven()">
         <md-icon>bookmark</md-icon>

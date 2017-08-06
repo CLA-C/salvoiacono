@@ -26,6 +26,8 @@ import { TestComponent } from './test/test.component';
 import { MenuComponent } from './menu/menu.component';
 import { MessageComponent } from './message/message.component';
 import { AppPipe } from './app.pipe';
+import { ZoomComponent } from './zoom/zoom.component';
+import { AppService } from './app.service';
 
 enableProdMode();
 
@@ -44,7 +46,8 @@ enableProdMode();
     TestComponent,
     MenuComponent,
     MessageComponent,
-    AppPipe
+    AppPipe,
+    ZoomComponent
   ],
   entryComponents: [
     AppComponent,
@@ -52,6 +55,7 @@ enableProdMode();
     FormWorkComponent,
     FormEventComponent,
     FormFooterComponent,
+    ZoomComponent
   ],
   imports: [
     BrowserModule,
@@ -66,6 +70,7 @@ enableProdMode();
     BrowserAnimationsModule,
     MasonryModule
   ],
-  bootstrap: [ AppComponent ]
+  providers: [AppService],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

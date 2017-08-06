@@ -47,12 +47,12 @@ body{
 
 .loguser{
     position: absolute;
-    top: 10px;
+    top: 50px;
     right: 10px;
     color: white;
     z-index: 999;
 }
-
+ 
 @media (max-width: 800px) {
     .menu-side{
         display: inherit !important;
@@ -104,3 +104,7 @@ snack-bar-container{
     // background-color: black;
 }
 
+.infoabout{
+    max-width: 800px;
+    margin: auto;
+}

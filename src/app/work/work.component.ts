@@ -5,7 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Subscription }   from 'rxjs/Subscription';
-
+import { ZoomComponent } from '../zoom/zoom.component';
 import { FormEventComponent } from '../form/form-event/form-event.component';
 import { FormWorkComponent } from '../form/form-work/form-work.component';
 import { CartService } from '../cart/cart.service';
@@ -82,7 +82,7 @@ export class WorkComponent implements OnInit {
 
   workSett(){
     let config: MdDialogConfig = {
-      disableClose: false,
+      disableClose: true,
       data: {
         id: this.keyid
       }
@@ -101,7 +101,10 @@ export class WorkComponent implements OnInit {
     this.cartService.add(this.keyid);
   }
 
-  goSLide(val){
+
+  zoomWork(photo){
+    let config: MdDialogConfig = {data: {photo: photo}};
+    this.dialog.open(ZoomComponent, config);
   }
 
 

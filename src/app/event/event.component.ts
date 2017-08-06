@@ -9,6 +9,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 import { FormEventComponent } from '../form/form-event/form-event.component';
 import { FormWorkComponent } from '../form/form-work/form-work.component';
+import { ZoomComponent } from '../zoom/zoom.component';
 import { AppPipe } from '../app.pipe';
 
 @Component({
@@ -25,7 +26,7 @@ export class EventComponent implements OnInit {
   eventid;
   events: FirebaseListObservable<any>;
   works: FirebaseListObservable<any>;
-  imlogin: boolean;
+  imlogin;
   dialogRef: MdDialogRef<FormWorkComponent>;
 
   constructor(
@@ -34,35 +35,36 @@ export class EventComponent implements OnInit {
     public dialog: MdDialog, 
     private router: Router,
     private route:ActivatedRoute,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
   ) {
 
-    afAuth.authState.subscribe(log => {
-      if(log) {
-        this.imlogin=true;
-      } else {
-        this.imlogin=false;
-      }
+    this.afAuth.authState.subscribe(islog => {      
+      if (islog) { this.imlogin = true } else { this.imlogin =  false }
     });
 
-    this.eventid = this.route.snapshot.params['event'];
-    this.events = db.list('/event', {
-      query: {
-        orderByChild: 'url',
-        equalTo: this.eventid
-      }
-    });
-
-    this.works = db.list('/work', {
-      query: {
-        orderByChild: 'event',
-        equalTo: this.eventid,
-      }
-    });
-    
   }
 
   ngOnInit() {
+
+    this.eventid = this.route.snapshot.params['event'];
+    if(this.eventid == 'allworks'){
+      this.events = this.db.list('/event');
+      this.works = this.db.list('/work');
+    }else{
+      this.events = this.db.list('/event', {
+        query: {
+          orderByChild: 'url',
+          equalTo: this.eventid
+        }
+      });
+      this.works = this.db.list('/work', {
+        query: {
+          orderByChild: 'event',
+          equalTo: this.eventid,
+        }
+      });
+    }
+    
   }
 
   eventSett(id){
@@ -78,7 +80,7 @@ export class EventComponent implements OnInit {
 
   workSett(id){
     let config: MdDialogConfig = {
-      disableClose: false,
+      disableClose: true,
       data: {
         id: id
       }
@@ -86,7 +88,13 @@ export class EventComponent implements OnInit {
     this.dialog.open(FormWorkComponent, config);
   }
 
-  goSLide(val){
+  goWork(event,work,photo){
+    if(work){
+      this.router.navigateByUrl(event+'/'+work);
+    }else{
+      let config: MdDialogConfig = {data: {photo: photo}};
+      this.dialog.open(ZoomComponent, config);
+    }
   }
 
 

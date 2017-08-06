@@ -73,7 +73,15 @@ export class FormWorkComponent implements OnInit {
       });
     }
 
-    dialog.afterAllClosed.subscribe(() => {
+
+    
+  }
+
+  ngOnInit() {
+    
+  }
+
+  goSave(){
       if(this.work.valid && this.idid==false){
         this.db.list('work').update(this.workid, { 
           id:this.workid,
@@ -86,13 +94,9 @@ export class FormWorkComponent implements OnInit {
           active:this.work.controls['active'].value,
         })
       }
-    });
-    
+    this.dialog.closeAll();
   }
 
-  ngOnInit() {
-    
-  }
 
   goPhoto(event) {
     var filez = event.dataTransfer ? event.dataTransfer.files : event.target.files;

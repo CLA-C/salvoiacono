@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
     // this.slidelist.subscribe(snapshot => { this.slidenumb=snapshot});
 
     this.gridlist = db.list('/event');
-
+    
   }
   
   ngOnInit() {
@@ -74,7 +74,7 @@ export class HomeComponent implements OnInit {
 
   prodSett(id){
     let config: MdDialogConfig = {
-      disableClose: false,
+      disableClose: true,
       data: {
         id: id
       }

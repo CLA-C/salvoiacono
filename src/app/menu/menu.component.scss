@@ -1,6 +1,4 @@
 .main-menu{
-    // position: absolute;
-    // width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,23 +15,27 @@
         position: fixed;
         left: 0;
         right: 0;
+        top: 0;
     }
     .notready{
         margin-top: 36px;
         margin-left: -34px;
         font-weight: lighter;
     }
-    .logo{
+    .logo1{
         cursor: pointer;
         margin-left: 15px;
         margin-right: 15px;
         font-size: 45px;
         text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
         margin-top: -45px;
+        margin-left: 50px;
+
+        zoom: .75;
+        margin-bottom: 12px;
+
         @media (max-width: 600px) {
-            span{
-                display: none;
-            }
+            display: none;
         }
         img{
             height: 82px;
@@ -41,6 +43,23 @@
             bottom: -33px;
             padding: 10px;
             margin-left: 5px;
+            margin-right: 5px;
+        }
+    }
+    .logo2{
+        cursor: pointer;
+        margin-right: 18px;
+        font-size: 34px;
+        margin-top: -46px;
+        white-space: nowrap;
+        @media (min-width: 600px) {
+            display: none;
+        }
+        img{
+            height: 64px;
+            position: relative;
+            bottom: -27px;
+            padding: 10px;
             margin-right: 5px;
         }
     }

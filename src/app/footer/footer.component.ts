@@ -61,7 +61,8 @@ export class FooterComponent implements OnInit {
     if(this.messForm.valid){
       this.db.list('/message').push({ 
         message: this.messForm.controls['message'].value,
-        datetime : Date.now()
+        datetime : Date.now(),
+        read : false
       }).then((item) => {
         this.messForm.reset();
       });

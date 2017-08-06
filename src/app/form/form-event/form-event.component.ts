@@ -25,7 +25,6 @@ export class FormEventComponent implements OnInit {
   private cover;
   private baseurl = environment.baseurl;
   private result: any;
-  private iwantdelete:boolean = false;
 
   constructor(
     public db: AngularFireDatabase,
@@ -60,32 +59,36 @@ export class FormEventComponent implements OnInit {
         this.cover=this.event.controls['cover'].value;
       });
     }else{
-      db.list('/event').push({ 'active': false }).then((item) => {
+      db.list('/event').push({
+        active: false,
+        cover: 'placeholder.gif',
+        gridc: 1,
+        gridr: 1
+      }).then((item) => {
         this.eventid=item.key;
       });
     }
 
-    dialog.afterAllClosed.subscribe(() => {
-      console.log(this.iwantdelete)
-      if(this.iwantdelete==false){
-        this.db.list('event').update(this.eventid, { 
-          url: this.event.controls['url'].value,
-          title: this.event.controls['title'].value,
-          description: this.event.controls['description'].value,
-          // what: this.event.controls['what'].value,
-          // slide: this.event.controls['slide'].value,
-          gridr: this.event.controls['gridr'].value,
-          gridc: this.event.controls['gridc'].value,
-          active: this.event.controls['active'].value,
-        })
-      }
-    });
-    
-  }
+    console.log(this.cover);
 
+  }
+    
   ngOnInit() {
     
   }
+
+  goSave(){
+    this.db.list('event').update(this.eventid, { 
+      url: this.event.controls['url'].value,
+      title: this.event.controls['title'].value,
+      description: this.event.controls['description'].value,
+      gridr: this.event.controls['gridr'].value,
+      gridc: this.event.controls['gridc'].value,
+      active: this.event.controls['active'].value,
+    })
+    this.dialog.closeAll();
+  }
+
 
   goPhoto(event) {
     var filez = event.dataTransfer ? event.dataTransfer.files : event.target.files;
@@ -109,11 +112,10 @@ export class FormEventComponent implements OnInit {
   }
   
   okDelete(){
-    this.iwantdelete=true;
     if(confirm("Delete this item?")){
       console.log(this.eventid)
       this.db.object('/event/'+this.eventid).remove();
-      firebase.storage().ref('/event/'+this.cover).delete();
+      if(this.cover!='placeholder.gif'){firebase.storage().ref('/event/'+this.cover).delete()}
       this.dialog.closeAll();
       this.router.navigateByUrl("/");
     }

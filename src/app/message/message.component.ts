@@ -17,19 +17,33 @@ export class MessageComponent implements OnInit {
     public afAuth: AngularFireAuth,
   ) { 
 
-    afAuth.authState.subscribe(log => {
+
+  }
+
+  ngOnInit() {
+
+
+    this.afAuth.authState.subscribe(log => {
       if(log) {
         this.login=true;
       } else {
         this.login=false;
       }
     });
-    
-    this.messages = db.list('/message').map((array) => array.reverse()) as FirebaseListObservable<any[]>;
 
-  }
+    this.messages = this.db.list('/message');
+    this.messages.map((array) => array.reverse()) as FirebaseListObservable<any[]>;
 
-  ngOnInit() {
+    this.messages
+      .subscribe(snapshots => {
+        snapshots.forEach(item => {
+
+          this.messages.update(item.$key, { read: true });
+
+          console.log(1111)
+
+        });
+      })
 
 
   }
