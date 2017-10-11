@@ -9,9 +9,6 @@ export class CartService {
     if(localStorage.getItem('cartItem')){
       this.cart = JSON.parse(localStorage.getItem('cartItem'));
     }
-    // if(storage!=0){
-    //   this.cart = storage;
-    // }
   }
 
   get() {

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -23,13 +24,18 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class MenuComponent implements OnInit {
 
-  state: string = 'finish';
+  state: string = 'start';
   ready: boolean = false;
   imlogin: boolean;
 
   constructor(
     afAuth: AngularFireAuth,
+    private router: Router,
+    private route: ActivatedRoute,
   ) {
+
+    this.route.params.subscribe(data => {
+    });
 
     afAuth.authState.subscribe(log => {if(log) {this.imlogin=true;} else {this.imlogin=false;}});
    
@@ -39,7 +45,12 @@ export class MenuComponent implements OnInit {
   }
 
   goFinish(){
+    if(this.state == 'start'){
       this.state = 'finish';
+    }else{
+      this.router.navigate(['/']);
+    }
+
   }
 
 }

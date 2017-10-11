@@ -105,7 +105,7 @@ export class FormWorkComponent implements OnInit {
       this.loading=true;
       this.filetoload = filez.length;
       for (let selectedFile of filez) {
-        var rdn = Math.random().toString(36).slice(-10);
+        var rdn = Math.random().toString(36).slice(-10)+'.jpg';
         var storageRef = firebase.storage().ref('/work/'+rdn);
         storageRef.put(selectedFile).then((photo) => {
           this.db.list('/work/'+this.workid+'/photo').push({ id: rdn });

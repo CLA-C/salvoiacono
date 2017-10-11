@@ -6,7 +6,6 @@
     width: 100%;
     background-color: transparent;
     color: white;
-    font-family: 'Josefin Sans', sans-serif;
     z-index: 3;
     left: auto;
     right: auto;
@@ -20,27 +19,22 @@
     .notready{
         margin-top: 36px;
         margin-left: -34px;
-        font-weight: lighter;
     }
     .logo1{
         cursor: pointer;
         margin-left: 15px;
         margin-right: 15px;
-        font-size: 45px;
+        font-size: 36px;
         text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
-        margin-top: -45px;
+        margin-top: -50px;
         margin-left: 50px;
-
-        zoom: .75;
-        margin-bottom: 12px;
-
         @media (max-width: 600px) {
             display: none;
         }
         img{
-            height: 82px;
+            height: 70px;
             position: relative;
-            bottom: -33px;
+            bottom: -30px;
             padding: 10px;
             margin-left: 5px;
             margin-right: 5px;
@@ -49,14 +43,14 @@
     .logo2{
         cursor: pointer;
         margin-right: 18px;
-        font-size: 34px;
+        font-size: 28px;
         margin-top: -46px;
         white-space: nowrap;
         @media (min-width: 600px) {
             display: none;
         }
         img{
-            height: 64px;
+            height: 60px;
             position: relative;
             bottom: -27px;
             padding: 10px;

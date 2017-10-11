@@ -9,19 +9,18 @@ $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-
 // @import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-@import url('https://fonts.googleapis.com/css?family=Poppins');
-@import url('https://fonts.googleapis.com/css?family=Architects+Daughter');
-@import url('https://fonts.googleapis.com/css?family=Fugaz+One');
-@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans:100,100i,300,300i,400,400i,600,600i,700,700i');
 
 body{
     margin: 0;
-    font-family: 'Poppins', sans-serif;
-    // background-color: black;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: lighter;
 }
-
 * {
     outline: none;
+}
+h1, h2, h3{
+    font-weight: normal;
 }
 .hide{
     display: none;

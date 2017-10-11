@@ -37,11 +37,7 @@ export class MessageComponent implements OnInit {
     this.messages
       .subscribe(snapshots => {
         snapshots.forEach(item => {
-
           this.messages.update(item.$key, { read: true });
-
-          console.log(1111)
-
         });
       })
 

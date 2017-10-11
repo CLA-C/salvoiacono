@@ -39,7 +39,6 @@
         
     }
     .slide-tito{
-        font-family: 'Josefin Sans', sans-serif;
         transition: all .5s;
         margin-top: 120px;
         color: white;
@@ -59,13 +58,10 @@
 .home-grid{
     margin-top: 1px;
     margin-bottom: 1px;
-    font-family: 'Josefin Sans', sans-serif;
     .grid-item{
-        // transition: all .5s;
         cursor: pointer;
         background-size: 100%;
         &:hover{
-            // background-size: 200% !important;
             .item-back{
                 transform: scale(1.2);
                 filter: brightness(0.8);

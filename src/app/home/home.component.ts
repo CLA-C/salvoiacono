@@ -27,6 +27,8 @@ export class HomeComponent implements OnInit {
     public db: AngularFireDatabase,
     public dialog: MdDialog, 
   ) {
+
+    console.log(this.baseurl)
         
       afAuth.authState.subscribe(log => {
         if(log) {

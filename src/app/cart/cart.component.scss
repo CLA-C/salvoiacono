@@ -27,10 +27,7 @@
             }
             .info-pric{
                 margin-left: 20px;
-                // margin-top: 20px;
                 font-size: 20px;
-                // font-weight: bold;
-                // float: right;
             }
             .info-butt{
                 display: flex;
@@ -39,16 +36,6 @@
             .mat-icon-button{
                 margin-left: 20px;
             }
-        }
-    }
-    .item-paym{
-        display: flex;
-        flex-basis: 100%;
-        button{
-            flex: 1;
-            height: 50px;
-            background-color: black;
-            color: white;
         }
     }
 }

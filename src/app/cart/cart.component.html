@@ -1,10 +1,3 @@
-<div class="cover">
-  <md-grid-list class="" cols="1" rowHeight="160px">
-    <md-grid-tile>
-    </md-grid-tile>
-  </md-grid-list>
-</div>
-
 <div class="cart-cont">
   <div class="cart-item" *ngFor="let product of cartlist">
     <img routerLink="/{{product.event}}/{{product.url}}" src="{{baseurl}}work%2F{{product.cover}}?alt=media" alt="">
@@ -16,7 +9,7 @@
         </button>
       </div>
       <div class="info-butt">
-        <md-button-toggle-group #group="mdButtonToggleGroup">
+        <!-- <md-button-toggle-group #group="mdButtonToggleGroup">
           <md-button-toggle value="1" checked="true">
             <md-icon>looks_one</md-icon>
           </md-button-toggle>
@@ -29,14 +22,14 @@
           <md-button-toggle value="4">
             <md-icon>looks_4</md-icon>
           </md-button-toggle>
-        </md-button-toggle-group>
+        </md-button-toggle-group> -->
         <div class="info-pric">&#8364; {{product.price}}</div>
       </div>
     </div>
   </div>
 
-  <div class="item-paym">
-    <button md-button>STRIPE</button>
-  </div>
+  <h3><span id="totalprice">{{paypalprice}}</span> Euro</h3>
 
+  <div id="paypal-button"></div>
+  
 </div>

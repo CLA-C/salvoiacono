@@ -56,7 +56,6 @@
         .work-info{
             flex: 1;
             padding-left: 20px;
-            // font-family: 'Architects Daughter', cursive;
             font-size: 21px;
             .goback{
                 padding: 5px;
@@ -104,7 +103,11 @@
         background-color: black;
         color: white;
         height: 50px;
+        width: 100%;
     }
+}
+.work-buyt2{
+    display: none;
 }
 
 
@@ -114,7 +117,21 @@
     .work-cont{
         flex-direction: column;
         .work-side{
-            display: none;
+            display: flex;
+            order: 2;
+            margin-top: 20px;
+            margin-bottom: -20px;
+
+            flex-direction: column;
+            width: 100% !important;
+            .side-imag{
+                width: 100% !important;
+                height: auto !important;
+            }
+            img{
+                width: 100% !important;
+                height: auto !important;
+            }
         }
         .work-imag{
             order: 2;
@@ -123,14 +140,16 @@
         }
         .work-info{
             order: 1;
+            margin: 0;
+            padding: 0px !important;
         }
-        // .work-buyt2{
-        //     display: inherit;
-        //     margin-top: -30px;
-        // }
-        // .work-buyt1{
-        //     display: none;
-        // }
+        .work-buyt1{
+            display: none;
+        }
+        .work-buyt2{
+            display: inherit;
+            margin-top: 10px;
+        }
     }
 
 

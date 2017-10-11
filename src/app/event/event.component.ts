@@ -68,7 +68,6 @@ export class EventComponent implements OnInit {
   }
 
   eventSett(id){
-    console.log(id)
     let config: MdDialogConfig = {
       disableClose: false,
       data: {

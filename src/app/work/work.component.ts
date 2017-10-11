@@ -99,6 +99,7 @@ export class WorkComponent implements OnInit {
 
   goCart(){
     this.cartService.add(this.keyid);
+    this.router.navigateByUrl('/cart');
   }
 
 

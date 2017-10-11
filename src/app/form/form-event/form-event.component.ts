@@ -68,9 +68,6 @@ export class FormEventComponent implements OnInit {
         this.eventid=item.key;
       });
     }
-
-    console.log(this.cover);
-
   }
     
   ngOnInit() {
@@ -98,7 +95,7 @@ export class FormEventComponent implements OnInit {
       this.filetoload = filez.length;
       firebase.storage().ref('/event/'+this.cover).delete();
       for (let selectedFile of filez) {
-        var rdn = Math.random().toString(36).slice(-10);
+        var rdn = Math.random().toString(36).slice(-10)+'.jpg';
         var storageRef = firebase.storage().ref('/event/'+rdn);
         storageRef.put(selectedFile).then((photo) => {
           this.db.list('event').update(this.eventid, { cover: rdn});
@@ -113,7 +110,6 @@ export class FormEventComponent implements OnInit {
   
   okDelete(){
     if(confirm("Delete this item?")){
-      console.log(this.eventid)
       this.db.object('/event/'+this.eventid).remove();
       if(this.cover!='placeholder.gif'){firebase.storage().ref('/event/'+this.cover).delete()}
       this.dialog.closeAll();
