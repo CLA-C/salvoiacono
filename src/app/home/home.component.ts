@@ -1,10 +1,11 @@
 import { Component, Inject, ViewChild, TemplateRef, OnInit, HostListener } from '@angular/core';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { MdSidenav, MdDialogRef, MdDialog, MdDialogConfig, MD_DIALOG_DATA } from "@angular/material";
+import { MatSidenav, MatDialogRef, MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from "@angular/material";
 import { environment } from '../../environments/environment';
 
 import { FormEventComponent } from '../form/form-event/form-event.component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,7 @@ export class HomeComponent implements OnInit {
 
   imlogin: boolean;
   // homeslide:number = 0;
-  gridlist: FirebaseListObservable<any>;
+  gridlist: Observable<any>;
   // slidelist: FirebaseListObservable<any>;
   // slidenumb;
   gridh: '2:2';
@@ -25,7 +26,7 @@ export class HomeComponent implements OnInit {
   constructor(
     public afAuth: AngularFireAuth,
     public db: AngularFireDatabase,
-    public dialog: MdDialog, 
+    public dialog: MatDialog, 
   ) {
 
     console.log(this.baseurl)
@@ -47,7 +48,7 @@ export class HomeComponent implements OnInit {
     
     // this.slidelist.subscribe(snapshot => { this.slidenumb=snapshot});
 
-    this.gridlist = db.list('/event');
+    this.gridlist = db.list('/event').valueChanges();
     
   }
   
@@ -75,7 +76,7 @@ export class HomeComponent implements OnInit {
   }
 
   prodSett(id){
-    let config: MdDialogConfig = {
+    let config: MatDialogConfig = {
       disableClose: true,
       data: {
         id: id

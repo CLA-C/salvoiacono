@@ -1,58 +1,58 @@
-<md-dialog-content>
+<mat-dialog-content>
   <div class="prod-newo">
   <form class="prod-fiel" [formGroup]="work">
     <div class="card-tool">
-      <button md-button class="uplo-phot" color="accent">
-        <md-icon>add_a_photo</md-icon>
+      <button mat-button class="uplo-phot" color="accent">
+        <mat-icon>add_a_photo</mat-icon>
         <input type="file" name="file" accept="image/*|pdf" multiple (change)="goPhoto($event)">
       </button>
-      <md-slide-toggle formControlName="active"> Online</md-slide-toggle>
-      <button md-button color="accent" (click)="workDelete()"><md-icon>delete</md-icon></button>      
+      <mat-slide-toggle formControlName="active"> Online</mat-slide-toggle>
+      <button mat-button color="accent" (click)="workDelete()"><mat-icon>delete</mat-icon></button>      
     </div>
     <div class="flex">
-      <md-input-container>
-        <input mdInput placeholder="Event" formControlName="event">
-      </md-input-container>
-      <md-input-container>
-        <input mdInput placeholder="Url" formControlName="url">
-      </md-input-container>
+      <mat-form-field>
+        <input matInput placeholder="Event" formControlName="event">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Url" formControlName="url">
+      </mat-form-field>
     </div>
-    <md-input-container>
-      <input mdInput placeholder="Title" formControlName="title">
-    </md-input-container>
+    <mat-form-field>
+      <input matInput placeholder="Title" formControlName="title">
+    </mat-form-field>
     <div class="flex">
-      <md-input-container>
-        <input mdInput type="number" placeholder="Price €" formControlName="price">
-      </md-input-container>
-      <md-input-container>
-        <input mdInput type="number" placeholder="Discount %" formControlName="discount">
-      </md-input-container>
+      <mat-form-field>
+        <input matInput type="number" placeholder="Price €" formControlName="price">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="number" placeholder="Discount %" formControlName="discount">
+      </mat-form-field>
     </div>
-    <md-input-container class="flex2">
-      <textarea mdInput rows="10" placeholder="Description" formControlName="description"></textarea>
-    </md-input-container>
+    <mat-form-field class="flex2">
+      <textarea matInput rows="10" placeholder="Description" formControlName="description"></textarea>
+    </mat-form-field>
   </form>
   <div class="prod-uplo">
     <div class="imag-cont">
       <div *ngIf="loading">
-        <md-spinner class="spinner"></md-spinner>
+        <mat-spinner class="spinner"></mat-spinner>
       </div>
-      <md-radio-group [(ngModel)]="cover">
+      <mat-radio-group [(ngModel)]="cover">
         <div class="imag-prod" *ngFor="let photo of photos | async;">
           <div class="imag-head">
-            <md-radio-button class="imag-cove" vlaue="photo.id" (click)="myCover(photo)">
+            <mat-radio-button class="imag-cove" vlaue="photo.id" (click)="myCover(photo)">
               <span>cover</span>
-            </md-radio-button>
-            <button md-icon-button (click)="imgDelete(photo)"><md-icon>delete</md-icon></button>      
+            </mat-radio-button>
+            <button mat-icon-button (click)="imgDelete(photo)"><mat-icon>delete</mat-icon></button>      
           </div>
           <img src="{{baseurl}}work%2F{{photo.id}}?alt=media" alt="">
         </div>
-      </md-radio-group>
+      </mat-radio-group>
     </div>
   </div>
   </div>
-</md-dialog-content>
-<md-card-actions class="toolaction">
-  <button md-button md-dialog-close color="primary">CLOSE</button>
-  <button md-button (click)="goSave()" color="primary">SAVE</button>
-</md-card-actions>
+</mat-dialog-content>
+<mat-card-actions class="toolaction">
+  <button mat-button matDialogClose color="primary">CLOSE</button>
+  <button mat-button (click)="goSave()" color="primary">SAVE</button>
+</mat-card-actions>

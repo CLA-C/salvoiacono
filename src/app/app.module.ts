@@ -1,15 +1,27 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, enableProdMode } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
-import { MaterialModule } from '@angular/material'; import 'hammerjs';
+import 'hammerjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabaseModule, AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 import { MasonryModule } from 'angular2-masonry';
+import { MatIconModule } from "@angular/material/icon";
+import { MatMenuModule } from "@angular/material/menu";
+import { MatButtonModule } from "@angular/material/button";
+import { MatButtonToggleModule } from "@angular/material/button-toggle";
+import { MatGridListModule } from "@angular/material/grid-list";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MatRadioModule } from "@angular/material/radio"; 
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatCardModule } from "@angular/material/card";
+import { MatSnackBarModule } from "@angular/material/snack-bar"; 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -64,11 +76,22 @@ enableProdMode();
     AngularFireAuthModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule,
+    HttpClientModule,
     AppRoutingModule,
-    MaterialModule,
     BrowserAnimationsModule,
-    MasonryModule
+    MasonryModule,
+    MatIconModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatGridListModule,
+    MatFormFieldModule,
+    MatSlideToggleModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatDialogModule,
+    MatCardModule,
+    MatSnackBarModule
   ],
   providers: [AppService],
   bootstrap: [AppComponent]

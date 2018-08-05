@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 import { environment } from '../../environments/environment';
 import { CartService } from '../cart/cart.service';
 
@@ -12,42 +12,34 @@ declare let paypal: any;
 })
 export class CartComponent implements OnInit {
 
-  private cartlist = [];
-  private baseurl = environment.baseurl;
-  private totalprice: number = 0;
-  private paypalprice: string = '0.00';
-  private products = [];
-
-
+  public cartlist = [];
+  public baseurl = environment.baseurl;
+  public totalprice: number = 0;
+  public paypalprice: string = '0.00';
+  public products = [];
 
   constructor(
     private cartService: CartService,
     public db: AngularFireDatabase,
-  ) {
-
-
-  }
+  ) {}
 
   ngOnInit() {
 
     let cart = this.cartService.get();
     cart.forEach(id => {
-      let product = this.db.object('/work/' + id, { preserveSnapshot: true });
-      product.subscribe(snapshot => {
-        this.cartlist.push(snapshot.val());
-        this.totalprice += snapshot.val().price;
-        this.products.push(snapshot.val().name);
+      let product = this.db.object('/work/' + id).valueChanges();
+      product.subscribe((item: any) => {
+        this.cartlist.push(item);
+        this.totalprice += item.price;
+        this.products.push(item.name);
 
         this.paypalprice = parseFloat(this.totalprice.toString()).toFixed(2)
 
       });
     });
 
-    console.log(this.paypalprice)
-
-
-    setTimeout(function () {
-
+    setTimeout(() => {
+      const paypalprice = this.paypalprice;
       let payhtml = document.getElementById('totalprice')
       let paytoto = payhtml.innerHTML;
 
@@ -73,6 +65,11 @@ export class CartComponent implements OnInit {
           });
         },
 
+        validate: function(actions) {
+          return paypalprice ? actions.enable() : actions.disable();
+        },
+
+
         onAuthorize: function (data, actions) {
           return actions.payment.execute().then(function (payment) {
 
@@ -86,15 +83,14 @@ export class CartComponent implements OnInit {
 
     }, 3000);
 
-
-
-
   }
 
   removeCart(product) {
     let index: number = this.cartlist.indexOf(product);
     if (index !== -1) { this.cartlist.splice(index, 1); }
     this.cartService.remove(product.id);
+    this.totalprice = this.totalprice - product.price;
+    this.paypalprice = parseFloat(this.totalprice.toString()).toFixed(2);
   }
 
 

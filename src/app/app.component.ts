@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList, AngularFireObject } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { MdSidenav, MdDialog, MdDialogConfig, MdSnackBar } from "@angular/material";
+import { MatSidenav, MatDialog, MatDialogConfig, MatSnackBar } from "@angular/material";
 
 import { FormLoginComponent } from './form/form-login/form-login.component';
 import { FormEventComponent } from './form/form-event/form-event.component';
@@ -17,20 +17,20 @@ import { CartService } from './cart/cart.service';
 })
 export class AppComponent implements OnInit {
 
-  @ViewChild('sidenav') public sidenav: MdSidenav;
+  @ViewChild('sidenav') public sidenav: MatSidenav;
   
-  private imlogin: boolean;
-  private cartnumber;
-  private cart = [];
+  public imlogin: boolean;
+  public cartnumber;
+  public cart = [];
   private cartone = ['aaa'];
-  private message: FirebaseListObservable<any>;
-  private notread:number;
+  public message: AngularFireList<any>;
+  public notread:number;
 
   constructor(
     public db: AngularFireDatabase,
     public afAuth: AngularFireAuth,
-    public dialog: MdDialog,
-    public snackBar: MdSnackBar,
+    public dialog: MatDialog,
+    public snackBar: MatSnackBar,
     public cartService: CartService
   ) { 
 
@@ -52,12 +52,9 @@ export class AppComponent implements OnInit {
     //     this.notread=snapshots.length;
     // })
 
-      db.list('/message', {
-        query: {
-          orderByChild: 'read',
-          equalTo: false
-        }
-      }).subscribe(snapshots => {
+      db.list('/message',  ref => ref.orderByChild('read').equalTo(false))
+        .valueChanges()
+        .subscribe(snapshots => {
         this.notread=snapshots.length;
       });
 
@@ -70,7 +67,7 @@ export class AppComponent implements OnInit {
   }
 
   goLogin() {
-    const config = new MdDialogConfig();
+    const config = new MatDialogConfig();
     this.dialog.open(FormLoginComponent, config);
   }
   goLogout() {
@@ -80,7 +77,7 @@ export class AppComponent implements OnInit {
     });
   }
   goProd() {
-    let config: MdDialogConfig = {
+    let config: MatDialogConfig = {
       disableClose: true,
       data: {
       }
@@ -88,7 +85,7 @@ export class AppComponent implements OnInit {
     this.dialog.open(FormWorkComponent, config);
   }
   goEven() {
-    let config: MdDialogConfig = {
+    let config: MatDialogConfig = {
       disableClose: true,
       data: {
       }

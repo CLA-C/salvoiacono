@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MdDialog, MdSnackBar } from "@angular/material";
+import { MatDialog, MatSnackBar } from "@angular/material";
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
@@ -18,8 +18,8 @@ export class FormLoginComponent implements OnInit {
 
   constructor(
     public fb: FormBuilder,
-    public dialog: MdDialog,
-    public snackBar: MdSnackBar,
+    public dialog: MatDialog,
+    public snackBar: MatSnackBar,
     public afAuth: AngularFireAuth
   ) {
 

@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MdDialog, MdDialogRef, MdDialogConfig, MD_DIALOG_DATA } from '@angular/material';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { MatDialog, MatDialogRef, MatDialogConfig, MAT_DIALOG_DATA } from '@angular/material';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import * as firebase from 'firebase';
 import { FormGroup, FormControl, Validators, FormBuilder, FormsModule } from '@angular/forms';
 import { environment } from '../../../environments/environment';
@@ -13,26 +13,26 @@ import { environment } from '../../../environments/environment';
 })
 export class FormEventComponent implements OnInit {
 
-  private submitted = false;
-  private dragging: boolean = false;
-  private files: any = [];
-  private filen: number = 0;
-  private filetoload: number = 0;
-  private loading: boolean = false;
-  private newProduct: FirebaseListObservable<any>;
-  private eventid: string = '';
-  private event: FormGroup;
-  private cover;
-  private baseurl = environment.baseurl;
-  private result: any;
+  public submitted = false;
+  public dragging: boolean = false;
+  public files: any = [];
+  public filen: number = 0;
+  public filetoload: number = 0;
+  public loading: boolean = false;
+  public newProduct: AngularFireList<any>;
+  public eventid: string = '';
+  public event: FormGroup;
+  public cover;
+  public baseurl = environment.baseurl;
+  public result: any;
 
   constructor(
     public db: AngularFireDatabase,
     private router: Router,
     private route:ActivatedRoute,
-    @Inject(MD_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,
-    public dialog: MdDialog
+    public dialog: MatDialog
   ) {
 
     this.event = fb.group({
@@ -50,7 +50,7 @@ export class FormEventComponent implements OnInit {
     if(data.id){
       this.eventid=data.id;
       this.newProduct = db.list('/event/'+this.eventid);
-      this.newProduct.subscribe(items => {
+      this.newProduct.valueChanges().subscribe(items => {
           items.forEach(item => {
             if(this.event.controls[item.$key]){
               this.event.controls[item.$key].setValue(item.$value);

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
-import { MdDialog, MdDialogConfig } from "@angular/material";
+import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
+import { MatDialog, MatDialogConfig } from "@angular/material";
 import { FormFooterComponent } from '../form/form-footer/form-footer.component';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-footer',
@@ -13,7 +14,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 })
 export class FooterComponent implements OnInit {
   
-  myinfo: FirebaseObjectObservable<any>;
+  myinfo: Observable<any>;
   imlogin: boolean;
   infodata:any;
   html;
@@ -22,7 +23,7 @@ export class FooterComponent implements OnInit {
   constructor(
     public db: AngularFireDatabase,
     public afAuth: AngularFireAuth,
-    public dialog: MdDialog,
+    public dialog: MatDialog,
     private sanitized: DomSanitizer,
     private fb: FormBuilder,
   ) { 
@@ -42,15 +43,15 @@ export class FooterComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.myinfo = this.db.object('/info')
+    this.myinfo = this.db.object('/info').valueChanges();
     this.myinfo.subscribe(jsonData => {
-      this.infodata=jsonData;
+      this.infodata = jsonData;
       this.html = this.sanitized.bypassSecurityTrustHtml(jsonData.social);
     });
   }
 
   goFooter() {
-    let config: MdDialogConfig = {
+    let config: MatDialogConfig = {
       disableClose: false,
       data: this.infodata
     };

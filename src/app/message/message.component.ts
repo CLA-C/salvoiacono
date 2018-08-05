@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
@@ -9,7 +9,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class MessageComponent implements OnInit {
 
-  messages: FirebaseListObservable<any>;
+  messages: AngularFireList<any>;
   login:boolean;
 
   constructor(
@@ -32,12 +32,14 @@ export class MessageComponent implements OnInit {
     });
 
     this.messages = this.db.list('/message');
-    this.messages.map((array) => array.reverse()) as FirebaseListObservable<any[]>;
 
-    this.messages
+    // OLD: why reverse array???
+    // this.messages.map((array) => array.reverse()) as FirebaseListObservable<any[]>;
+
+    this.messages.snapshotChanges()
       .subscribe(snapshots => {
         snapshots.forEach(item => {
-          this.messages.update(item.$key, { read: true });
+          this.messages.update(item.key, { read: true });
         });
       })
 

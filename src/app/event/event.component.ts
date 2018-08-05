@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
-import { MdSidenav, MdDialogRef, MdDialog, MdDialogConfig, MD_DIALOG_DATA } from "@angular/material";
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { MatSidenav, MatDialogRef, MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from "@angular/material";
 import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -11,6 +11,7 @@ import { FormEventComponent } from '../form/form-event/form-event.component';
 import { FormWorkComponent } from '../form/form-work/form-work.component';
 import { ZoomComponent } from '../zoom/zoom.component';
 import { AppPipe } from '../app.pipe';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-work',
@@ -24,17 +25,17 @@ export class EventComponent implements OnInit {
   };
   baseurl = environment.baseurl;
   eventid;
-  events: FirebaseListObservable<any>;
-  works: FirebaseListObservable<any>;
+  events: Observable<any[]>;
+  works: Observable<any[]>;
   imlogin;
-  dialogRef: MdDialogRef<FormWorkComponent>;
+  dialogRef: MatDialogRef<FormWorkComponent>;
 
   constructor(
     public db: AngularFireDatabase,
     public afAuth: AngularFireAuth,
-    public dialog: MdDialog, 
+    public dialog: MatDialog, 
     private router: Router,
-    private route:ActivatedRoute,
+    private route: ActivatedRoute,
     private sanitizer: DomSanitizer,
   ) {
 
@@ -48,27 +49,17 @@ export class EventComponent implements OnInit {
 
     this.eventid = this.route.snapshot.params['event'];
     if(this.eventid == 'allworks'){
-      this.events = this.db.list('/event');
-      this.works = this.db.list('/work');
+      this.events = this.db.list('/event').valueChanges();
+      this.works = this.db.list('/work').valueChanges();
     }else{
-      this.events = this.db.list('/event', {
-        query: {
-          orderByChild: 'url',
-          equalTo: this.eventid
-        }
-      });
-      this.works = this.db.list('/work', {
-        query: {
-          orderByChild: 'event',
-          equalTo: this.eventid,
-        }
-      });
+      this.events = this.db.list('/event', ref => ref.orderByChild('url').equalTo(this.eventid)).valueChanges();
+      this.works = this.db.list('/work', ref => ref.orderByChild('event').equalTo(this.eventid)).valueChanges();
     }
     
   }
 
   eventSett(id){
-    let config: MdDialogConfig = {
+    let config: MatDialogConfig = {
       disableClose: false,
       data: {
         id: id
@@ -78,7 +69,7 @@ export class EventComponent implements OnInit {
   }
 
   workSett(id){
-    let config: MdDialogConfig = {
+    let config: MatDialogConfig = {
       disableClose: true,
       data: {
         id: id
@@ -91,7 +82,7 @@ export class EventComponent implements OnInit {
     if(work){
       this.router.navigateByUrl(event+'/'+work);
     }else{
-      let config: MdDialogConfig = {data: {photo: photo}};
+      let config: MatDialogConfig = {data: {photo: photo}};
       this.dialog.open(ZoomComponent, config);
     }
   }

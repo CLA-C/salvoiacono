@@ -24,7 +24,7 @@ $uplow: 100%;
 .prod-fiel-duob{
     display: flex;
 }
-.mat-input-container{
+.mat-form-field{
     flex: 1;
 }
 
@@ -146,12 +146,12 @@ $uplow: 100%;
 
 
 .checkbox1{
-    .mat-input-container{
+    .mat-form-field{
         max-width: 100%;
     }
 }
 .checkbox2{
-    .mat-input-container{
+    .mat-form-field{
         max-width: 100px;
     }
 }

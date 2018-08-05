@@ -4,25 +4,25 @@
     <div class="item-info">
       <div class="flex">
         <div routerLink="/{{product.event}}/{{product.url}}" class="info-tito">{{product.title}}</div>
-        <button md-icon-button mdTooltip="Remove" mdTooltipPosition="right" (click)="removeCart(product)">
-          <md-icon>delete</md-icon>
+        <button mat-icon-button matTooltip="Remove" matTooltipPosition="right" (click)="removeCart(product)">
+          <mat-icon>delete</mat-icon>
         </button>
       </div>
       <div class="info-butt">
-        <!-- <md-button-toggle-group #group="mdButtonToggleGroup">
-          <md-button-toggle value="1" checked="true">
-            <md-icon>looks_one</md-icon>
-          </md-button-toggle>
-          <md-button-toggle value="2">
-            <md-icon>looks_two</md-icon>
-          </md-button-toggle>
-          <md-button-toggle value="3">
-            <md-icon>looks_3</md-icon>
-          </md-button-toggle>
-          <md-button-toggle value="4">
-            <md-icon>looks_4</md-icon>
-          </md-button-toggle>
-        </md-button-toggle-group> -->
+        <!-- <mat-button-toggle-group #group="matButtonToggleGroup">
+          <mat-button-toggle value="1" checked="true">
+            <mat-icon>looks_one</mat-icon>
+          </mat-button-toggle>
+          <mat-button-toggle value="2">
+            <mat-icon>looks_two</mat-icon>
+          </mat-button-toggle>
+          <mat-button-toggle value="3">
+            <mat-icon>looks_3</mat-icon>
+          </mat-button-toggle>
+          <mat-button-toggle value="4">
+            <mat-icon>looks_4</mat-icon>
+          </mat-button-toggle>
+        </mat-button-toggle-group> -->
         <div class="info-pric">&#8364; {{product.price}}</div>
       </div>
     </div>
@@ -30,6 +30,6 @@
 
   <h3><span id="totalprice">{{paypalprice}}</span> Euro</h3>
 
-  <div id="paypal-button"></div>
+  <div id="paypal-button" [ngClass]="{'hide': !totalprice}"></div>
   
 </div>

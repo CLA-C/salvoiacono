@@ -6,11 +6,11 @@
             </div>
         </div>
         <div class="work-imag">
-            <button *ngIf="imlogin" md-icon-button class="btn-set" (click)="workSett()"><md-icon>settings_ethernet</md-icon></button>
+            <button *ngIf="imlogin" mat-icon-button class="btn-set" (click)="workSett()"><mat-icon>settings_ethernet</mat-icon></button>
             <img src="{{baseurl}}work%2F{{photo}}?alt=media" alt="" (click)="zoomWork(baseurl+'work%2F'+photo+'?alt=media')">
         
             <div class="work-buyt work-buyt2" *ngIf="(work | async)?.price">
-                <button md-button (click)="goCart()">
+                <button mat-button (click)="goCart()">
                     <span>BUY € {{(work | async)?.price}}</span>
                     <span *ngIf="(work | async)?.discount">{{(work | async)?.discount}}% discount</span>
                 </button>
@@ -19,11 +19,11 @@
         
         </div>
         <div class="work-info">
-            <button class="goback" md-button routerLink="/{{(work | async)?.event}}"><md-icon>chevron_left</md-icon> {{ (work | async)?.event }}</button>
+            <button class="goback" mat-button routerLink="/{{(work | async)?.event}}"><mat-icon>chevron_left</mat-icon> {{ (work | async)?.event }}</button>
             <h1>{{ (work | async)?.title }}</h1>
             <div [innerHTML]="(work | async)?.description"></div>
             <div class="work-buyt work-buyt1" *ngIf="(work | async)?.price">
-                <button md-button (click)="goCart()">
+                <button mat-button (click)="goCart()">
                     <span>BUY € {{(work | async)?.price}}</span>
                     <span *ngIf="(work | async)?.discount">{{(work | async)?.discount}}% discount</span>
                 </button>

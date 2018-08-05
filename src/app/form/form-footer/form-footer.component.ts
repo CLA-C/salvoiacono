@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MdDialog, MdDialogRef, MdDialogConfig, MD_DIALOG_DATA} from '@angular/material';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { MatDialog, MatDialogRef, MatDialogConfig, MAT_DIALOG_DATA} from '@angular/material';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import * as firebase from 'firebase';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { environment } from '../../../environments/environment';
@@ -17,9 +17,9 @@ export class FormFooterComponent implements OnInit {
 
   constructor(
     public db: AngularFireDatabase,
-    @Inject(MD_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,
-    public dialog: MdDialog
+    public dialog: MatDialog
   ) {
 
     this.myinfo = fb.group({
