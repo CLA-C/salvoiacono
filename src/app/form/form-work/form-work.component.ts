@@ -5,6 +5,8 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import * as firebase from 'firebase';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { environment } from '../../../environments/environment';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-form-work',
@@ -25,7 +27,7 @@ export class FormWorkComponent implements OnInit {
   cover: number=0;
   content;
   newProduct: AngularFireList<any>;
-  photos: AngularFireList<any>;
+  photos: Observable<any>;
   idid:boolean = false;
 
   constructor(
@@ -59,19 +61,23 @@ export class FormWorkComponent implements OnInit {
     if(data.id){
       this.workid=data.id;
       db.list('/work/'+this.workid)
-        .snapshotChanges()
+        .snapshotChanges().pipe(
+          map(actions => 
+            actions.map(a => ({ key: a.key, value: a.payload.val() }))
+          )
+        )
         .subscribe( 
           items => {
             items.forEach(item => { 
               if(this.work.controls[item.key]){
-                this.work.controls[item.key].setValue(item.payload.val());
+                this.work.controls[item.key].setValue(item.value);
               }
             })
           }
         );
       this.cover=this.work.controls['cover'].value;
-      this.photos = this.db.list('/work/'+this.workid+'/photo');
-      this.photos.valueChanges().subscribe(items => {
+      this.photos = this.db.list('/work/'+this.workid+'/photo').valueChanges();
+      this.photos.subscribe(items => {
           this.filen=0;
           items.forEach(item => { 
             this.filen+=1;
@@ -125,7 +131,7 @@ export class FormWorkComponent implements OnInit {
           this.filen+=1;
           if(this.filetoload==0){
             this.loading=false;
-            this.photos = this.db.list('/work/'+this.workid+'/photo');
+            this.photos = this.db.list('/work/'+this.workid+'/photo').valueChanges();
           }
         });
       }

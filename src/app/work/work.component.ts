@@ -105,11 +105,9 @@ export class WorkComponent implements OnInit {
     this.router.navigateByUrl('/cart');
   }
 
-
   zoomWork(photo){
     let config: MatDialogConfig = {data: {photo: photo}};
     this.dialog.open(ZoomComponent, config);
   }
-
 
 }

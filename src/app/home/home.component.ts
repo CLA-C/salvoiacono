@@ -6,6 +6,7 @@ import { environment } from '../../environments/environment';
 
 import { FormEventComponent } from '../form/form-event/form-event.component';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -48,7 +49,11 @@ export class HomeComponent implements OnInit {
     
     // this.slidelist.subscribe(snapshot => { this.slidenumb=snapshot});
 
-    this.gridlist = db.list('/event').valueChanges();
+    this.gridlist = db.list('/event').snapshotChanges().pipe(
+      map(actions => 
+        actions.map(a => ({ key: a.key, ...a.payload.val() }))
+      )
+    );
     
   }
   

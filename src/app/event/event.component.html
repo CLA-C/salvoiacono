@@ -1,6 +1,6 @@
 <div class="even-desk" *ngFor="let event of events | async; let i = index">
   <div *ngIf="i==0">
-    <button *ngIf="imlogin" mat-icon-button class="event-setting" (click)="eventSett(event.$key)"><mat-icon>settings_ethernet</mat-icon></button>
+    <button *ngIf="imlogin" mat-icon-button class="event-setting" (click)="eventSett(event.key)"><mat-icon>settings_ethernet</mat-icon></button>
     <div class="even-cont container">
       <div class="even-desk">
         <h1>{{event.title}}</h1>
@@ -11,7 +11,7 @@
         <masonry-brick class="brick" *ngFor="let item of works | async ">
           <div class="cont">
           <div class="cont2">
-            <button *ngIf="imlogin" mat-icon-button class="btn-set" (click)="workSett(item.$key)"><mat-icon>settings_ethernet</mat-icon></button>
+            <button *ngIf="imlogin" mat-icon-button class="btn-set" (click)="workSett(item.key)"><mat-icon>settings_ethernet</mat-icon></button>
             <div class="">
               <img mat-card-image *ngIf="!item.cover" src="assets/placeholder.gif">
               <img mat-card-image *ngIf="item.cover" src="{{baseurl}}work%2F{{item.cover}}?alt=media"  (click)="goWork(event.url,item.url,baseurl+'work%2F'+item.cover+'?alt=media')">

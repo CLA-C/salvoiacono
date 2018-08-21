@@ -12,6 +12,7 @@ import { FormWorkComponent } from '../form/form-work/form-work.component';
 import { ZoomComponent } from '../zoom/zoom.component';
 import { AppPipe } from '../app.pipe';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-work',
@@ -46,14 +47,31 @@ export class EventComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.eventid = this.route.snapshot.params['event'];
     if(this.eventid == 'allworks'){
-      this.events = this.db.list('/event').valueChanges();
-      this.works = this.db.list('/work').valueChanges();
+      this.events = this.db.list('/event').snapshotChanges().pipe(
+        map(actions => 
+          actions.map(a => ({ key: a.key, ...a.payload.val() }))
+        )
+      );
+      this.works = this.db.list('/work').snapshotChanges().pipe(
+        map(actions => 
+          actions.map(a => ({ key: a.key, ...a.payload.val() }))
+        )
+      );
     }else{
-      this.events = this.db.list('/event', ref => ref.orderByChild('url').equalTo(this.eventid)).valueChanges();
-      this.works = this.db.list('/work', ref => ref.orderByChild('event').equalTo(this.eventid)).valueChanges();
+      this.events = this.db.list('/event', ref => ref.orderByChild('url').equalTo(this.eventid)).snapshotChanges().pipe(
+        map(actions => 
+          actions.map(a => ({ key: a.key, ...a.payload.val() }))
+        )
+      );
+      
+      this.works = this.db.list('/work', ref => ref.orderByChild('event').equalTo(this.eventid)).snapshotChanges().pipe(
+        map(actions => 
+          actions.map(a => ({ key: a.key, ...a.payload.val() }))
+        )
+      );
+      this.works.subscribe()
     }
     
   }

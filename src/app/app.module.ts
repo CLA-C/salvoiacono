@@ -21,7 +21,8 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatRadioModule } from "@angular/material/radio"; 
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatCardModule } from "@angular/material/card";
-import { MatSnackBarModule } from "@angular/material/snack-bar"; 
+import { MatSnackBarModule } from "@angular/material/snack-bar";
+import {MatInputModule} from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -80,6 +81,7 @@ enableProdMode();
     AppRoutingModule,
     BrowserAnimationsModule,
     MasonryModule,
+    MatInputModule,
     MatIconModule,
     MatMenuModule,
     MatButtonModule,

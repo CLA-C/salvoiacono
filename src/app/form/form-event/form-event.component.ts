@@ -5,6 +5,7 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import * as firebase from 'firebase';
 import { FormGroup, FormControl, Validators, FormBuilder, FormsModule } from '@angular/forms';
 import { environment } from '../../../environments/environment';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-form-event',
@@ -50,10 +51,14 @@ export class FormEventComponent implements OnInit {
     if(data.id){
       this.eventid=data.id;
       this.newProduct = db.list('/event/'+this.eventid);
-      this.newProduct.valueChanges().subscribe(items => {
+      this.newProduct.snapshotChanges().pipe(
+        map(actions => 
+          actions.map(a => ({ key: a.key, value: a.payload.val()}))
+        )
+      ).subscribe(items => {
           items.forEach(item => {
-            if(this.event.controls[item.$key]){
-              this.event.controls[item.$key].setValue(item.$value);
+            if(this.event.controls[item.key]){
+              this.event.controls[item.key].setValue(item.value);
             }
           })
         this.cover=this.event.controls['cover'].value;

@@ -9,7 +9,7 @@
       [routerLink]="[item.url]" 
       [ngStyle]="{'background': 'url(' + baseurl + 'event%2F' + item.cover + '?alt=media) center / cover'}"></div>
       <span class="grid-tito" [routerLink]="[item.url]">{{item.title}}</span>
-      <button *ngIf="imlogin" mat-icon-button class="btn-set" (click)="prodSett(item.$key)"><mat-icon>settings_ethernet</mat-icon></button>
+      <button *ngIf="imlogin" mat-icon-button class="btn-set" (click)="prodSett(item.key)"><mat-icon>settings_ethernet</mat-icon></button>
     </mat-grid-tile>
   </mat-grid-list>
 </div>
@@ -24,7 +24,7 @@
         [rowspan]="1"
         [ngStyle]="{'background': 'url(' + baseurl + 'event%2F' + item.cover + '?alt=media) center / cover'}">
         <span class="grid-tito" [routerLink]="[item.url]">{{item.title}}</span>
-        <button *ngIf="imlogin" mat-icon-button class="btn-set" (click)="prodSett(item.$key)"><mat-icon>settings_ethernet</mat-icon></button>
+        <button *ngIf="imlogin" mat-icon-button class="btn-set" (click)="prodSett(item.key)"><mat-icon>settings_ethernet</mat-icon></button>
       </mat-grid-tile>
     </mat-grid-list>
   </div>
