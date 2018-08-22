@@ -68,7 +68,7 @@ export class FormWorkComponent implements OnInit {
         )
         .subscribe( 
           items => {
-            items.forEach(item => { 
+            items.forEach(item => {
               if(this.work.controls[item.key]){
                 this.work.controls[item.key].setValue(item.value);
               }
@@ -76,7 +76,11 @@ export class FormWorkComponent implements OnInit {
           }
         );
       this.cover=this.work.controls['cover'].value;
-      this.photos = this.db.list('/work/'+this.workid+'/photo').valueChanges();
+      this.photos = this.db.list('/work/'+this.workid+'/photo').snapshotChanges().pipe(
+        map(actions => 
+          actions.map(a => ({ key: a.key, ...a.payload.val() }))
+        )
+      );
       this.photos.subscribe(items => {
           this.filen=0;
           items.forEach(item => { 
