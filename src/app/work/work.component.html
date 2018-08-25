@@ -22,10 +22,10 @@
             <button class="goback" mat-button routerLink="/{{(work | async)?.event}}"><mat-icon>chevron_left</mat-icon> {{ (work | async)?.event }}</button>
             <h1>{{ (work | async)?.title }}</h1>
             <div [innerHTML]="(work | async)?.description"></div>
-            <div class="work-buyt work-buyt1" *ngIf="(work | async)?.price">
+            <div class="work-buyt work-buyt1" >
                 <button mat-button (click)="goCart()">
-                    <span>BUY € {{(work | async)?.price}}</span>
-                    <span *ngIf="(work | async)?.discount">{{(work | async)?.discount}}% discount</span>
+                    <span>BUY € {{calculatePrice((work | async)?.price, (work | async)?.discount)}}</span>
+                    <span> ({{(work | async)?.discount}}% discount)</span>
                 </button>
             </div>
         </div>

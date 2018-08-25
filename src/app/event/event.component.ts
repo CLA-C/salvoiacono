@@ -95,6 +95,13 @@ export class EventComponent implements OnInit {
     };
     this.dialog.open(FormWorkComponent, config);
   }
+  
+  calculatePrice(price, discount) {
+    if (!discount) {
+      return price
+    }
+    return price * (1 - (discount/100))
+  }
 
   goWork(event,work,photo){
     if(work){

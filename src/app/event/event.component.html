@@ -19,7 +19,7 @@
             <div>
               <div class="infoproduct">
                 <div class="priceinfo" *ngIf="item.price">
-                  <div class="price">&#8364; {{item.price}}</div>
+                  <div class="price">&#8364;  {{calculatePrice(item.price, item.discount)}}</div>
                   <div *ngIf="item.discount" class="discount">{{item.discount}}% Discount</div>
                 </div>
               </div>

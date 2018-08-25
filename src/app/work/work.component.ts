@@ -58,16 +58,12 @@ export class WorkComponent implements OnInit {
     .pipe(map(actions => actions.map(a => ({ key: a.key, ...a.payload.val() }))))
     .subscribe( (items: any[]) => {
       // this.photonumb=items[0];
+      if (!items.length) return
       this.keyid = items[0].key;
       this.photo = items[0].cover;
       let eventname = items[0].event;
       this.work = db.object('/work/'+items[0].id).valueChanges();
       this.photos = db.list('/work/'+items[0].id+'/photo').valueChanges();
-      // this.photos.valueChanges()
-      // .subscribe(snapshot => {
-      //   console.log('snapsht', snapshot)
-      //   this.photonumb=snapshot
-      // });
       db.list('/event', ref => ref.orderByChild('url').equalTo(eventname))
       .snapshotChanges()
       .pipe(map(actions => actions.map(a => ({ key: a.key, ...a.payload.val() }))))
@@ -98,6 +94,14 @@ export class WorkComponent implements OnInit {
   }
   
   stupidPhoto(val){
+  }
+
+  calculatePrice(price, discount) {
+    if (!discount) {
+      return price
+    }
+
+    return price * (1 - (discount/100))
   }
 
   goCart(){

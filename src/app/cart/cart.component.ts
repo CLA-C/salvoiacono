@@ -30,7 +30,7 @@ export class CartComponent implements OnInit {
       let product = this.db.object('/work/' + id).valueChanges();
       product.subscribe((item: any) => {
         this.cartlist.push(item);
-        this.totalprice += item.price;
+        this.totalprice += this.calculatePrice(item.price, item.discount);
         this.products.push(item.name);
 
         this.paypalprice = parseFloat(this.totalprice.toString()).toFixed(2)
@@ -85,11 +85,19 @@ export class CartComponent implements OnInit {
 
   }
 
+  calculatePrice(price, discount) {
+    if (!discount) {
+      return price
+    }
+
+    return price * (1 - (discount/100))
+  }
+
   removeCart(product) {
     let index: number = this.cartlist.indexOf(product);
     if (index !== -1) { this.cartlist.splice(index, 1); }
     this.cartService.remove(product.id);
-    this.totalprice = this.totalprice - product.price;
+    this.totalprice = this.totalprice - this.calculatePrice(product.price, product.discount);
     this.paypalprice = parseFloat(this.totalprice.toString()).toFixed(2);
   }
 
