@@ -76,6 +76,14 @@ export class EventComponent implements OnInit {
     
   }
 
+  sortItem(a, b) {
+    if (a.key < b.key) //sort string ascending
+      return -1;
+    if (a.key >  b.key)
+      return 1;
+    return 0
+  }
+
   eventSett(id){
     let config: MatDialogConfig = {
       disableClose: false,
@@ -111,6 +119,5 @@ export class EventComponent implements OnInit {
       this.dialog.open(ZoomComponent, config);
     }
   }
-
 
 }

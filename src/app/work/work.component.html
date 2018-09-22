@@ -23,9 +23,13 @@
             <h1>{{ (work | async)?.title }}</h1>
             <div [innerHTML]="(work | async)?.description"></div>
             <div class="work-buyt work-buyt1" >
-                <button mat-button (click)="goCart()">
+                <button mat-button (click)="goCart()" *ngIf="!(work | async)?.soldOut">
                     <span>BUY € {{calculatePrice((work | async)?.price, (work | async)?.discount)}}</span>
-                    <span> ({{(work | async)?.discount}}% discount)</span>
+                    <span *ngIf="(work | async)?.discount as discount"> ({{discount}}% discount)</span>
+                </button>
+
+                <button mat-button *ngIf="(work | async)?.soldOut">
+                    <span>SOLD OUT</span>
                 </button>
             </div>
         </div>

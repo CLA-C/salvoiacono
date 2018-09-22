@@ -42,6 +42,7 @@ export class FormWorkComponent implements OnInit {
     this.work = fb.group({
       url: [data.url, [ ]],
       title: [data.title, [ ]],
+      soldOut: [data.soldOut, [ ]],
       price: [data.price, [ ]],
       discount: [data.title, [ ]],
       description: [data.desk, []],
@@ -90,6 +91,7 @@ export class FormWorkComponent implements OnInit {
     }else{
       db.list('/work').push({ 
         active: false,
+        soldOut: false,
       }).then((item) => {
         this.workid=item.key;
       });
@@ -114,11 +116,11 @@ export class FormWorkComponent implements OnInit {
           description:this.work.controls['description'].value,
           event:this.work.controls['event'].value,
           active:this.work.controls['active'].value,
+          soldOut:this.work.controls['soldOut'].value,
         })
       }
     this.dialog.closeAll();
   }
-
 
   goPhoto(event) {
     var filez = event.dataTransfer ? event.dataTransfer.files : event.target.files;
