@@ -55,7 +55,9 @@ export class WorkComponent implements OnInit {
     this.workid = this.route.snapshot.params['work'];
     db.list('/work', ref => ref.orderByChild('url').equalTo(this.workid))
     .snapshotChanges()
-    .pipe(map(actions => actions.map(a => ({ key: a.key, ...a.payload.val() }))))
+    .pipe(
+      map(actions => actions.map(a => ({ key: a.key, ...a.payload.val() })))
+    )
     .subscribe( (items: any[]) => {
       // this.photonumb=items[0];
       if (!items.length) return

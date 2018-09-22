@@ -12,7 +12,7 @@ import { FormWorkComponent } from '../form/form-work/form-work.component';
 import { ZoomComponent } from '../zoom/zoom.component';
 import { AppPipe } from '../app.pipe';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-work',
@@ -52,24 +52,28 @@ export class EventComponent implements OnInit {
       this.events = this.db.list('/event').snapshotChanges().pipe(
         map(actions => 
           actions.map(a => ({ key: a.key, ...a.payload.val() }))
-        )
+        ),
+        map((items: any[]) => items.filter(item => this.imlogin ? true : item.active))
       );
       this.works = this.db.list('/work').snapshotChanges().pipe(
         map(actions => 
           actions.map(a => ({ key: a.key, ...a.payload.val() }))
-        )
+        ),
+        map((items: any[]) => items.filter(item => this.imlogin ? true : item.active))
       );
     }else{
       this.events = this.db.list('/event', ref => ref.orderByChild('url').equalTo(this.eventid)).snapshotChanges().pipe(
         map(actions => 
           actions.map(a => ({ key: a.key, ...a.payload.val() }))
-        )
+        ),
+        map((items: any[]) => items.filter(item => this.imlogin ? true : item.active))
       );
       
       this.works = this.db.list('/work', ref => ref.orderByChild('event').equalTo(this.eventid)).snapshotChanges().pipe(
         map(actions => 
           actions.map(a => ({ key: a.key, ...a.payload.val() }))
-        )
+        ),
+        map((items: any[]) => items.filter(item => this.imlogin ? true : item.active))
       );
       this.works.subscribe()
     }
